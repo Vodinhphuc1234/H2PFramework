@@ -7,40 +7,18 @@
     <list default="true" id="a94245b0-8a5a-4a2a-aa2e-6354d1a8c94d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/Mapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/MyAnnotation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/TestClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/adapters/Adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/adapters/Adapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/Column.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/Column.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/ID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/ID.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/ManyToOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/ManyToOne.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/Nullable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToOneParent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToMany.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToMany.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToOneHoldKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToOneChild.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToOneNoneKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/GroupBy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/GroupBy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/HavingCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/Condition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/NestedBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/NestedBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/SelectCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/SelectCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/SelectQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/SelectQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/SelectCondition.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PDeleteQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PDeleteQuery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PInsertQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PInsertQuery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PSelectQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PSelectQuery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PUpdateQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PUpdateQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PSelectQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PSelectQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PUpsertdelQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PUpsertdelQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseConnections/SQLConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseConnections/SQLConnectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/mappers/TableMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/mappers/TableMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/models/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/models/Class.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/models/LearningBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/models/LearningBook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/DeleteQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/DeleteQueryHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/IQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/IQueryHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/InsertQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/InsertQueryHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/SelectQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/SelectQueryHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/UpdateQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/UpdateQueryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PSelectQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PReadingQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PUpsertdelQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PWritingQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/DeleteQueryHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/IQueryHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/InsertQueryHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/SelectQueryHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/UpdateQueryHandler.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,20 +52,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.h2p.annotations" />
@@ -164,7 +145,7 @@
       <workItem from="1672480825378" duration="799000" />
       <workItem from="1672580235048" duration="13456000" />
       <workItem from="1672635703893" duration="8578000" />
-      <workItem from="1672645198292" duration="8696000" />
+      <workItem from="1672645198292" duration="12095000" />
     </task>
     <servers />
   </component>
@@ -221,7 +202,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PSelectQuery.java</url>
-          <line>86</line>
+          <line>85</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -236,7 +217,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PSelectQuery.java</url>
-          <line>25</line>
+          <line>24</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -246,7 +227,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/h2p/Application.java</url>
-          <line>20</line>
+          <line>16</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>

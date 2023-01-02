@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public abstract class IH2PUpsertdelQuery<T> extends IH2PQuery<T> {
+public abstract class IH2PWritingQuery<T> extends IH2PQuery<T> {
     T object;
-    public IH2PUpsertdelQuery(Class<T> tClass) {
+    public IH2PWritingQuery(Class<T> tClass) {
         super(tClass);
     }
     protected abstract PreparedStatement getStatement(String tableName,

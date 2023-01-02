@@ -2,6 +2,7 @@ package com.h2p.databaseAccessManagement;
 
 import com.h2p.adapters.Adapter;
 import com.h2p.builders.select.SelectQuery;
+import com.h2p.databaseConnections.SQLConnectionManager;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -14,18 +15,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class H2PSelectQuery<T> extends IH2PSelectQuery<T> {
+public class H2PSelectQuery<T> extends IH2PReadingQuery<T> {
     public H2PSelectQuery(Class<T> tClass) {
         super(tClass);
     }
-    public SelectQuery.Builder selectBuilder = SelectQuery.newBuilder();
     @Override
     public List<T> select(boolean deep) {
         List<T> ts = new ArrayList<>();
         try {
             SelectQuery selectQuery = selectBuilder.build();
             String SQLNoneRelation = selectQuery.toQuery(tableMapper.getTableName(), "");
-            Statement statement = sqlConnectionManager.getConn().createStatement();
+            Statement statement = SQLConnectionManager.getInstance().getConn().createStatement();
             ResultSet rs = statement.executeQuery(SQLNoneRelation);
             while (rs.next()) {
                 ts.add(adapter.toObject(rs));

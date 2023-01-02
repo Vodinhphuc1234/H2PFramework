@@ -1,11 +1,13 @@
 package com.h2p.databaseAccessManagement;
 
+import com.h2p.databaseConnections.SQLConnectionManager;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class H2PUpdateQuery<T> extends IH2PUpsertdelQuery<T> {
+public class H2PUpdateQuery<T> extends IH2PWritingQuery<T> {
 
     public H2PUpdateQuery(Class<T> tClass) {
         super(tClass);
@@ -32,7 +34,7 @@ public class H2PUpdateQuery<T> extends IH2PUpsertdelQuery<T> {
         }
 
         String SQLQuery = String.format("UPDATE %s SET %s WHERE %s ", tableName, columnNameStr, idColumnsStr);
-        PreparedStatement preparedStatement = this.sqlConnectionManager.getConn().prepareStatement(SQLQuery);
+        PreparedStatement preparedStatement = SQLConnectionManager.getInstance().getConn().prepareStatement(SQLQuery);
         // params set
         int i = 1;
         List<Object> cloneColumnParams = new ArrayList<>(columnParams);

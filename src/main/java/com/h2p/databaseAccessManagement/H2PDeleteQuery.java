@@ -2,6 +2,7 @@ package com.h2p.databaseAccessManagement;
 
 import com.h2p.annotations.OneToMany;
 import com.h2p.annotations.OneToOneChild;
+import com.h2p.databaseConnections.SQLConnectionManager;
 import com.h2p.mappers.TableMapper;
 
 import java.lang.reflect.Field;
@@ -10,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class H2PDeleteQuery<T> extends IH2PUpsertdelQuery<T> {
+public class H2PDeleteQuery<T> extends IH2PWritingQuery<T> {
 
     public H2PDeleteQuery(Class<T> tClass) {
         super(tClass);
@@ -27,7 +28,7 @@ public class H2PDeleteQuery<T> extends IH2PUpsertdelQuery<T> {
             }
         }
         String SQLQuery = String.format("DELETE FROM %s WHERE %s ", tableName, idColumnsStr);
-        PreparedStatement preparedStatement = this.sqlConnectionManager.getConn().prepareStatement(SQLQuery);
+        PreparedStatement preparedStatement = SQLConnectionManager.getInstance().getConn().prepareStatement(SQLQuery);
 
         List<Field> oneToManyColumnFields = tableMapper.getOneToManyColumnFields();
         for (Field field : oneToManyColumnFields) {
@@ -51,7 +52,7 @@ public class H2PDeleteQuery<T> extends IH2PUpsertdelQuery<T> {
                         joinTableName, joinTableName, foreignKey,
                         joinTableName, foreignKey);
             }
-            updateStatement = this.sqlConnectionManager.getConn().prepareStatement(updateQuery);
+            updateStatement = SQLConnectionManager.getInstance().getConn().prepareStatement(updateQuery);
             updateStatement.setObject(1, referredValue);
             updateStatement.executeUpdate();
         }
@@ -69,7 +70,7 @@ public class H2PDeleteQuery<T> extends IH2PUpsertdelQuery<T> {
             PreparedStatement updateStatement;
             String updateQuery;
             updateQuery = String.format(" DELETE FROM %s WHERE %s.%s = ? ", joinTableName, joinTableName, foreignKey);
-            updateStatement = this.sqlConnectionManager.getConn().prepareStatement(updateQuery);
+            updateStatement = SQLConnectionManager.getInstance().getConn().prepareStatement(updateQuery);
             updateStatement.setObject(1, referToValue);
             updateStatement.executeUpdate();
         }
