@@ -56,10 +56,6 @@ public class User {
                 ", aClass=" + aClass +
                 '}';
     }
-
-    public static void main(String[] args) {
-
-    }
 }
 
 

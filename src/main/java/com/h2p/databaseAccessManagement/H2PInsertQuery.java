@@ -1,5 +1,6 @@
 package com.h2p.databaseAccessManagement;
 
+import com.h2p.adapters.IAdapter;
 import com.h2p.databaseConnections.SQLConnectionManager;
 
 import java.sql.PreparedStatement;
@@ -10,8 +11,8 @@ import java.util.List;
 
 public class H2PInsertQuery<T> extends IH2PWritingQuery<T> {
 
-    public H2PInsertQuery(Class<T> tClass) {
-        super(tClass);
+    public H2PInsertQuery(Class<T> tClass, IAdapter adapter) {
+        super(tClass, adapter);
     }
     @Override
     protected PreparedStatement getStatement(String tableName, List<String> columnNames, List<Object> columnParams, List<String> idColumnNames, List<Object> idParams)

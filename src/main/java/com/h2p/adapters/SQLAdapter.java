@@ -6,7 +6,6 @@ import com.h2p.annotations.OneToOneChild;
 import com.h2p.annotations.OneToOneParent;
 import com.h2p.mappers.TableMapper;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
@@ -14,19 +13,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter<T> {
-    private final Class<T> tClass;
-    private final TableMapper<T> tableMapper;
-
-    public Adapter(Class<T> tClass) {
-        this.tClass = tClass;
-        tableMapper = new TableMapper<>(tClass);
+public class SQLAdapter implements IAdapter {
+    public TableMapper tableMapper;
+    public SQLAdapter(TableMapper tableMapper) {
+        this.tableMapper = tableMapper;
     }
 
-    public T toObject(ResultSet rs) throws InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
-        Constructor<T> ctor = tClass.getConstructor();
-        T object = ctor.newInstance();
-        List<Field> fields = tableMapper.getFields();
+    @Override
+    public Object toObject(ResultSet rs, Class<?> tClass) throws InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
+        Object object = tableMapper.createInstance(tClass);
+        List<Field> fields = tableMapper.getFields(tClass);
         for (Field field : fields) {
             if (field.getAnnotation(OneToOneChild.class) != null
                     || field.getAnnotation(OneToOneParent.class) != null
@@ -52,8 +48,9 @@ public class Adapter<T> {
         return null;
     }
 
-    public List<Object> toExecuteParams(T object) throws IllegalAccessException {
-        List<Field> fields = tableMapper.getFields();
+    @Override
+    public List<Object> toExecuteParams(Object object, Class<?> tClass) throws IllegalAccessException {
+        List<Field> fields = tableMapper.getFields(tClass);
         List<Object> list = new ArrayList<>();
         for (Field field : fields) {
             field.setAccessible(true);
@@ -62,9 +59,8 @@ public class Adapter<T> {
                     || field.getAnnotation(OneToOneChild.class) != null
                     || field.getAnnotation(OneToOneParent.class) != null)
                     && value != null) {
-                TableMapper<?> tempTableMapper = new TableMapper<>(field.getType());
                 String referTo = field.getAnnotation(ManyToOne.class).referTo();
-                Field valueField = tempTableMapper.getFieldByColumnName(referTo);
+                Field valueField = tableMapper.getFieldByColumnName(field.getType(), referTo);
                 valueField.setAccessible(true);
                 value = valueField.get(value);
             }
@@ -73,8 +69,9 @@ public class Adapter<T> {
         return list;
     }
 
-    public List<Object> getId(T object) throws IllegalAccessException {
-        List<Field> fields = new ArrayList<>(tableMapper.getIdMap().keySet());
+    @Override
+    public List<Object> getId(Object object, Class<?> tClass) throws IllegalAccessException {
+        List<Field> fields = new ArrayList<>(tableMapper.getIdMap(tClass).keySet());
         List<Object> idValues = new ArrayList<>();
         for (Field field : fields) {
             field.setAccessible(true);
@@ -83,8 +80,14 @@ public class Adapter<T> {
         return idValues;
     }
 
-    public Object getValueByColumnName(T object, String columnName) throws IllegalAccessException {
-        Field field = tableMapper.getFieldByColumnName(columnName);
+    @Override
+    public TableMapper getTableMapper() {
+        return this.tableMapper;
+    }
+
+    @Override
+    public Object getValueByColumnName(Object object, String columnName, Class<?> tClass) throws IllegalAccessException {
+        Field field = tableMapper.getFieldByColumnName(tClass, columnName);
         field.setAccessible(true);
         return field.get(object);
     }

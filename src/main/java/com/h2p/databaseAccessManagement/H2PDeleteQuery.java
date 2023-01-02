@@ -1,5 +1,6 @@
 package com.h2p.databaseAccessManagement;
 
+import com.h2p.adapters.IAdapter;
 import com.h2p.annotations.OneToMany;
 import com.h2p.annotations.OneToOneChild;
 import com.h2p.databaseConnections.SQLConnectionManager;
@@ -13,8 +14,8 @@ import java.util.List;
 
 public class H2PDeleteQuery<T> extends IH2PWritingQuery<T> {
 
-    public H2PDeleteQuery(Class<T> tClass) {
-        super(tClass);
+    public H2PDeleteQuery(Class<T> tClass, IAdapter adapter) {
+        super(tClass, adapter);
     }
 
     @Override
@@ -30,18 +31,17 @@ public class H2PDeleteQuery<T> extends IH2PWritingQuery<T> {
         String SQLQuery = String.format("DELETE FROM %s WHERE %s ", tableName, idColumnsStr);
         PreparedStatement preparedStatement = SQLConnectionManager.getInstance().getConn().prepareStatement(SQLQuery);
 
-        List<Field> oneToManyColumnFields = tableMapper.getOneToManyColumnFields();
+        List<Field> oneToManyColumnFields = adapter.getTableMapper().getOneToManyColumnFields(tClass);
         for (Field field : oneToManyColumnFields) {
             OneToMany oneToMany = field.getAnnotation(OneToMany.class);
             // get type
             ParameterizedType stringListType = (ParameterizedType) field.getGenericType();
             Class<?> clazz = (Class<?>) stringListType.getActualTypeArguments()[0];
 
-            TableMapper tempTableMapper = new TableMapper<>(clazz);
-            String joinTableName = tempTableMapper.getTableName();
+            String joinTableName = adapter.getTableMapper().getTableName(clazz);
             String foreignKey = oneToMany.foreignKey();
             String referredColumn = oneToMany.referred();
-            Object referredValue = adapter.getValueByColumnName(object, referredColumn);
+            Object referredValue = adapter.getValueByColumnName(object, referredColumn, tClass);
 
             PreparedStatement updateStatement;
             String updateQuery;
@@ -57,15 +57,14 @@ public class H2PDeleteQuery<T> extends IH2PWritingQuery<T> {
             updateStatement.executeUpdate();
         }
 
-        List<Field> oneToOneChildColumnFields = tableMapper.getOneToOneChildColumnFields();
+        List<Field> oneToOneChildColumnFields = adapter.getTableMapper().getOneToOneChildColumnFields(tClass);
         for (Field field : oneToOneChildColumnFields) {
             field.setAccessible(true);
             OneToOneChild oneToOneHoldKey = field.getAnnotation(OneToOneChild.class);
-            TableMapper tempTableMapper = new TableMapper<>(field.getType());
-            String joinTableName = tempTableMapper.getTableName();
+            String joinTableName = adapter.getTableMapper().getTableName(field.getType());
             String foreignKey = oneToOneHoldKey.foreignKey();
             String referTo = oneToOneHoldKey.referTo();
-            Object referToValue = adapter.getValueByColumnName(object,referTo );
+            Object referToValue = adapter.getValueByColumnName(object,referTo, tClass );
 
             PreparedStatement updateStatement;
             String updateQuery;
