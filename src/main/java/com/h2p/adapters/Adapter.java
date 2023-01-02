@@ -1,6 +1,8 @@
 package com.h2p.adapters;
 
 import com.h2p.annotations.Column;
+import com.h2p.annotations.ManyToOne;
+import com.h2p.annotations.OneToOneHoldKey;
 import com.h2p.mappers.TableMapper;
 
 import java.lang.reflect.Constructor;
@@ -9,9 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by vodinhphuc on 27/12/2022
@@ -28,28 +28,57 @@ public class Adapter<T> {
     public T toObject(ResultSet rs) throws InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException, SQLException {
         Constructor<T> ctor = tClass.getConstructor();
         T object = ctor.newInstance();
-        for (Field field : object.getClass().getDeclaredFields()) {
+        List<Field> fields = tableMapper.getFields();
+        for (Field field : fields) {
+            if (field.getAnnotation(OneToOneHoldKey.class) != null || field.getAnnotation(ManyToOne.class) != null)
+                continue;
             if (field.getAnnotation(Column.class) == null) continue;
             field.setAccessible(true);
-            field.set(object, rs.getObject(field.getAnnotation(Column.class).name()));
+            Object setObject = rs.getObject(field.getAnnotation(Column.class).name());
+            if (setObject == null) continue;
+            field.set(object, setObject);
         }
+
         return object;
     }
 
-    public List<Object> toExecuteParams(T object, boolean excludeKey) throws IllegalAccessException {
-        List<Field> fields = tableMapper.getFields(excludeKey);
+    public List<Object> toExecuteParams(T object) throws IllegalAccessException {
+        List<Field> fields = tableMapper.getFields();
         List<Object> list = new ArrayList<>();
         for (Field field : fields) {
             field.setAccessible(true);
-            list.add(field.get(object));
+            Object value = field.get(object);
+            if ((field.getAnnotation(ManyToOne.class) != null || field.getAnnotation(OneToOneHoldKey.class) != null) && value != null) {
+                TableMapper<?> tempTableMapper = new TableMapper<>(field.getType());
+                String referTo = field.getAnnotation(ManyToOne.class).referTo();
+                Field valueField = tempTableMapper.getFieldByColumnName(referTo);
+                valueField.setAccessible(true);
+                value = valueField.get(value);
+            }
+            list.add(value);
         }
         return list;
     }
 
-    public Object getId(T object) throws IllegalAccessException {
-        Field field = tableMapper.getKeyField();
+    public List<Object> getId(T object) throws IllegalAccessException {
+        List<Field> fields = new ArrayList<>(tableMapper.getIdMap().keySet());
+        List<Object> idValues = new ArrayList<>();
+        for (Field field: fields){
+            field.setAccessible(true);
+            idValues.add(field.get(object));
+        }
+        return idValues;
+    }
+
+    public Object getValueByColumnName (T object, String columnName) throws IllegalAccessException {
+        Field field = tableMapper.getFieldByColumnName(columnName);
         field.setAccessible(true);
         return field.get(object);
     }
 
+    public List<Object> getValuesByColumnName (T object, String columnName) throws IllegalAccessException {
+        Field field = tableMapper.getFieldByColumnName(columnName);
+        field.setAccessible(true);
+        return (List<Object>) field.get(object);
+    }
 }
