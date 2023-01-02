@@ -1,23 +1,16 @@
 package com.h2p.models;
 
-import com.h2p.annotations.Column;
-import com.h2p.annotations.ID;
-import com.h2p.annotations.OneToOneHoldKey;
-import com.h2p.annotations.Table;
+import com.h2p.annotations.*;
 
-/**
- * Created by vodinhphuc on 29/12/2022
- */
 @Table(name = "learning_book")
 public class LearningBook {
     @ID(auto = true)
     @Column(name = "learning_book_id")
-    int learningBookId;
+    Integer learningBookId;
     @Column(name = "learning_book_name")
     String learningBookName;
 
-    @Column(name = "learning_book_id")
-    @OneToOneHoldKey(referTo = "class_id")
+    @OneToOneParent(referred="class_id", foreignKey="learning_book_id")
     Class aClass;
 
     public int getLearningBookId() {
@@ -34,6 +27,14 @@ public class LearningBook {
 
     public void setLearningBookName(String learningBookName) {
         this.learningBookName = learningBookName;
+    }
+
+    public Class getaClass() {
+        return aClass;
+    }
+
+    public void setaClass(Class aClass) {
+        this.aClass = aClass;
     }
 
     @Override

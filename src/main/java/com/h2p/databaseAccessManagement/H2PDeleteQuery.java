@@ -1,7 +1,7 @@
 package com.h2p.databaseAccessManagement;
-import com.h2p.adapters.Adapter;
-import com.h2p.annotations.Nullable;
+
 import com.h2p.annotations.OneToMany;
+import com.h2p.annotations.OneToOneChild;
 import com.h2p.mappers.TableMapper;
 
 import java.lang.reflect.Field;
@@ -10,10 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by vodinhphuc on 01/01/2023
- */
-public class H2PDeleteQuery<T> extends IH2PUpsertdelQuery<T>{
+public class H2PDeleteQuery<T> extends IH2PUpsertdelQuery<T> {
 
     public H2PDeleteQuery(Class<T> tClass) {
         super(tClass);
@@ -29,13 +26,17 @@ public class H2PDeleteQuery<T> extends IH2PUpsertdelQuery<T>{
                 idColumnsStr = idColumnsStr.concat(String.format(",%s=?", col));
             }
         }
-        String SQLQuery = String.format("DELETE FROM %s WHERE %s=? ", tableName, idColumnsStr);
+        String SQLQuery = String.format("DELETE FROM %s WHERE %s ", tableName, idColumnsStr);
         PreparedStatement preparedStatement = this.sqlConnectionManager.getConn().prepareStatement(SQLQuery);
 
         List<Field> oneToManyColumnFields = tableMapper.getOneToManyColumnFields();
-        for (Field field: oneToManyColumnFields){
+        for (Field field : oneToManyColumnFields) {
             OneToMany oneToMany = field.getAnnotation(OneToMany.class);
-            TableMapper tempTableMapper = new TableMapper<>(field.getType());
+            // get type
+            ParameterizedType stringListType = (ParameterizedType) field.getGenericType();
+            Class<?> clazz = (Class<?>) stringListType.getActualTypeArguments()[0];
+
+            TableMapper tempTableMapper = new TableMapper<>(clazz);
             String joinTableName = tempTableMapper.getTableName();
             String foreignKey = oneToMany.foreignKey();
             String referredColumn = oneToMany.referred();
@@ -43,15 +44,34 @@ public class H2PDeleteQuery<T> extends IH2PUpsertdelQuery<T>{
 
             PreparedStatement updateStatement;
             String updateQuery;
-            if (field.getAnnotation(Nullable.class) == null){
+            if (!oneToMany.nullable()) {
                 updateQuery = String.format(" DELETE FROM %s WHERE %s.%s = ? ", joinTableName, joinTableName, foreignKey);
-            } else{
+            } else {
                 updateQuery = String.format(" UPDATE %s SET %s.%s = null WHERE %s.%s = ? ",
                         joinTableName, joinTableName, foreignKey,
                         joinTableName, foreignKey);
             }
             updateStatement = this.sqlConnectionManager.getConn().prepareStatement(updateQuery);
             updateStatement.setObject(1, referredValue);
+            updateStatement.executeUpdate();
+        }
+
+        List<Field> oneToOneChildColumnFields = tableMapper.getOneToOneChildColumnFields();
+        for (Field field : oneToOneChildColumnFields) {
+            field.setAccessible(true);
+            OneToOneChild oneToOneHoldKey = field.getAnnotation(OneToOneChild.class);
+            TableMapper tempTableMapper = new TableMapper<>(field.getType());
+            String joinTableName = tempTableMapper.getTableName();
+            String foreignKey = oneToOneHoldKey.foreignKey();
+            String referTo = oneToOneHoldKey.referTo();
+            Object referToValue = adapter.getValueByColumnName(object,referTo );
+
+            PreparedStatement updateStatement;
+            String updateQuery;
+            updateQuery = String.format(" DELETE FROM %s WHERE %s.%s = ? ", joinTableName, joinTableName, foreignKey);
+            updateStatement = this.sqlConnectionManager.getConn().prepareStatement(updateQuery);
+            updateStatement.setObject(1, referToValue);
+            updateStatement.executeUpdate();
         }
         // params
         int i = 1;

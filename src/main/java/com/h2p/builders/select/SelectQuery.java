@@ -1,19 +1,22 @@
 package com.h2p.builders.select;
 
-/**
- * Created by vodinhphuc on 30/12/2022
- */
 public class SelectQuery {
-    SelectCondition condition;
+    Condition<Builder> condition;
     GroupBy groupBy;
 
     private SelectQuery(Builder builder) {
-        this.condition = builder.selectCondition;
+        this.condition = builder.condition;
         this.groupBy = builder.groupBy;
     }
 
-    public String toQuery() {
-        StringBuilder whereBuilder = new StringBuilder();
+    public String toQuery(String tableName, String subQuery) {
+        String initQuery = " SELECT %s FROM %s " + subQuery;
+        if (groupBy == null || groupBy.columns == null || groupBy.columns.isEmpty()){
+            initQuery = String.format(initQuery, "*", tableName);
+        } else {
+            initQuery = String.format(initQuery, groupBy.columns, tableName);
+        }
+        StringBuilder whereBuilder = new StringBuilder(initQuery);
         if (condition != null && condition.toQuery() != null && !condition.toQuery().isEmpty()) {
             whereBuilder.append(" WHERE ").append(condition.toQuery());
         }
@@ -28,23 +31,23 @@ public class SelectQuery {
     }
 
     public static final class Builder {
-        SelectCondition selectCondition;
+        Condition<Builder> condition;
         GroupBy groupBy;
 
-        public void setSelectCondition(SelectCondition selectCondition) {
-            this.selectCondition = selectCondition;
+        private void setCondition(Condition<Builder> condition) {
+            this.condition = condition;
         }
 
-        public Builder setGroupBy(GroupBy groupBy) {
+        private Builder setGroupBy(GroupBy groupBy) {
             this.groupBy = groupBy;
             return this;
         }
 
         // to add manually
-        private final SelectCondition.Builder builderWhere = SelectCondition.newBuilder().withParentBuilder(this);
+        private final Condition.Builder<Builder> builderWhere = Condition.<Builder>newBuilder().withParentBuilder(this);
         private final GroupBy.Builder builderGroupBy = GroupBy.newBuilder().withParentBuilder(this);
 
-        public SelectCondition.Builder where() {
+        public Condition.Builder<Builder> where() {
             return this.builderWhere;
         }
 
@@ -53,7 +56,7 @@ public class SelectQuery {
         }
 
         public void reset() {
-            this.selectCondition = null;
+            this.condition = null;
             this.groupBy = null;
         }
 

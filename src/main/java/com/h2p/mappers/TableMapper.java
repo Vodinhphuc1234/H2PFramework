@@ -8,9 +8,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * Created by vodinhphuc on 27/12/2022
- */
 public class TableMapper<T> {
     private final Class<T> tClass;
 
@@ -74,10 +71,18 @@ public class TableMapper<T> {
         }).collect(Collectors.toList());
         return fields;
     }
-    public List<Field> getOneToOneHoldKeyColumnFields() {
+    public List<Field> getOneToOneParentColumnFields() {
         List<Field> fields = List.of(tClass.getDeclaredFields());
         fields = fields.stream().filter(field -> {
-            OneToOneHoldKey annotation = field.getAnnotation(OneToOneHoldKey.class);
+            OneToOneParent annotation = field.getAnnotation(OneToOneParent.class);
+            return annotation != null;
+        }).collect(Collectors.toList());
+        return fields;
+    }
+    public List<Field> getOneToOneChildColumnFields() {
+        List<Field> fields = List.of(tClass.getDeclaredFields());
+        fields = fields.stream().filter(field -> {
+            OneToOneChild annotation = field.getAnnotation(OneToOneChild.class);
             return annotation != null;
         }).collect(Collectors.toList());
         return fields;
@@ -126,34 +131,44 @@ public class TableMapper<T> {
         }
         return String.join(",", leftJoinStrs);
     }
-    public String getOneToOneHoldKeyLeftJoinString() {
-        List<Field> fields = getOneToOneHoldKeyColumnFields();
+    public String getOneToOneParentLeftJoinString() {
+        List<Field> fields = getOneToOneParentColumnFields();
         List<String> leftJoinStrs = new ArrayList<>();
         String tableName = getTableName();
         if (fields != null && fields.size() > 0) {
             leftJoinStrs = fields.stream().map(field -> {
-                OneToOneHoldKey oneToOneHoldKey = field.getAnnotation(OneToOneHoldKey.class);
-                Column column = field.getAnnotation(Column.class);
-                String foreignKey = column.name();
-                String referTo = oneToOneHoldKey.referTo();
+                OneToOneParent oneToOneParent = field.getAnnotation(OneToOneParent.class);
+                String foreignKey = oneToOneParent.foreignKey();
+                String referred = oneToOneParent.referred();
                 // get join table name
                 String joinTableName = field.getType().getAnnotation(Table.class).name();
                 return String.format(" LEFT JOIN %s ON %s = %s ",
                         joinTableName,
-                        String.format(" %s.%s ", joinTableName, referTo),
-                        String.format(" %s.%s ", tableName, foreignKey)
+                        String.format(" %s.%s ", tableName, foreignKey),
+                        String.format(" %s.%s ", joinTableName, referred)
                 );
             }).collect(Collectors.toList());
         }
         return String.join(",", leftJoinStrs);
     }
-
-    public List<Field> getOneToOneNoneKeyColumnFields() {
-        List<Field> fields = List.of(tClass.getDeclaredFields());
-        fields = fields.stream().filter(field -> {
-            OneToOneNoneKey annotation = field.getAnnotation(OneToOneNoneKey.class);
-            return annotation != null;
-        }).collect(Collectors.toList());
-        return fields;
+    public String getOneToOneChildLeftJoinString() {
+        List<Field> fields = getOneToOneChildColumnFields();
+        List<String> leftJoinStrs = new ArrayList<>();
+        String tableName = getTableName();
+        if (fields != null && fields.size() > 0) {
+            leftJoinStrs = fields.stream().map(field -> {
+                OneToOneChild oneToOneChild = field.getAnnotation(OneToOneChild.class);
+                String foreignKey = oneToOneChild.foreignKey();
+                String referTo = oneToOneChild.referTo();
+                // get join table name
+                String joinTableName = field.getType().getAnnotation(Table.class).name();
+                return String.format(" LEFT JOIN %s ON %s = %s ",
+                        joinTableName,
+                        String.format(" %s.%s ", joinTableName, foreignKey),
+                        String.format(" %s.%s ", tableName, referTo)
+                );
+            }).collect(Collectors.toList());
+        }
+        return String.join(",", leftJoinStrs);
     }
 }

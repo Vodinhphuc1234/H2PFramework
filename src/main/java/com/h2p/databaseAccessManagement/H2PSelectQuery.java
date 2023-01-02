@@ -14,36 +14,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by vodinhphuc on 01/01/2023
- */
 public class H2PSelectQuery<T> extends IH2PSelectQuery<T> {
     public H2PSelectQuery(Class<T> tClass) {
         super(tClass);
     }
-    public SelectQuery.Builder selectBuilder;
+    public SelectQuery.Builder selectBuilder = SelectQuery.newBuilder();
     @Override
     public List<T> select(boolean deep) {
         List<T> ts = new ArrayList<>();
         try {
-            String SQLQuery = String.format("select * from %s ", tableMapper.getTableName());
-
-            if (selectBuilder == null) {
-                selectBuilder = SelectQuery.newBuilder();
-            }
             SelectQuery selectQuery = selectBuilder.build();
-            String SQLNoneRelation = SQLQuery + selectQuery.toQuery();
+            String SQLNoneRelation = selectQuery.toQuery(tableMapper.getTableName(), "");
             Statement statement = sqlConnectionManager.getConn().createStatement();
             ResultSet rs = statement.executeQuery(SQLNoneRelation);
             while (rs.next()) {
-                T object = adapter.toObject(rs);
                 ts.add(adapter.toObject(rs));
             }
-            // handle relation if need
+            // handle relation if you need
             if (deep) {
-                String SQLRelation = SQLQuery + tableMapper.getManyToOneLeftJoinString()
+                String subQuery = tableMapper.getManyToOneLeftJoinString()
                         + tableMapper.getOneToManyLeftJoinString()
-                        + tableMapper.getOneToOneHoldKeyLeftJoinString() + selectQuery.toQuery();
+                        + tableMapper.getOneToOneChildLeftJoinString()
+                        + tableMapper.getOneToOneParentLeftJoinString();
+                String SQLRelation = selectQuery.toQuery(tableMapper.getTableName(), subQuery );
                 ResultSet deepRs = statement.executeQuery(SQLRelation);
 
                 Map<Field /*table field*/, Map<Object/*main table id*/, List<Object> /*join table value*/>> mapOneToMany = new HashMap<>();
@@ -51,7 +44,8 @@ public class H2PSelectQuery<T> extends IH2PSelectQuery<T> {
                 while (deepRs.next()) {
                     T object = adapter.toObject(deepRs);
                     List<Field> manyToOneColumnAndOneToOneFields = tableMapper.getManyToOneColumnFields();
-                    manyToOneColumnAndOneToOneFields.addAll(tableMapper.getOneToOneHoldKeyColumnFields());
+                    manyToOneColumnAndOneToOneFields.addAll(tableMapper.getOneToOneChildColumnFields());
+                    manyToOneColumnAndOneToOneFields.addAll(tableMapper.getOneToOneParentColumnFields());
                     for (Field field : manyToOneColumnAndOneToOneFields) {
                         field.setAccessible(true);
                         Adapter<?> tempAdapter = new Adapter<>((Class<Object>) field.getType());
@@ -81,7 +75,9 @@ public class H2PSelectQuery<T> extends IH2PSelectQuery<T> {
                         if (values == null) {
                             values = new ArrayList<>();
                         }
-                        values.add(singleObject);
+                        if (singleObject != null){
+                            values.add(singleObject);
+                        }
                         joinValuesById.put(adapter.getId(object), values);
                         mapOneToMany.put(field, joinValuesById);
                     }

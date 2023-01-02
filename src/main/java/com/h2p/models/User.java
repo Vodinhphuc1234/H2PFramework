@@ -2,19 +2,15 @@ package com.h2p.models;
 
 import com.h2p.annotations.*;
 
-/**
- * Created by vodinhphuc on 27/12/2022
- */
 @Table(name = "user")
 public class User {
     @Column(name = "user_id")
     @ID(auto = true)
-    int id;
+    Integer id;
     @Column(name = "user_name")
     String name;
     @Column(name = "age")
-    int age;
-    @Nullable
+    Integer age;
     @Column(name = "class")
     @ManyToOne(referTo="class_id")
     Class aClass;

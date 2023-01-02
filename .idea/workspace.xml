@@ -5,40 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a94245b0-8a5a-4a2a-aa2e-6354d1a8c94d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/Nullable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToOneNoneKey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/GroupBy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/HavingCondition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/NestedBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/SelectCondition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/SelectQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PDeleteQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PInsertQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PSelectQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PUpdateQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PSelectQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PUpsertdelQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/models/Class.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/models/LearningBook.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/DeleteQueryHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/IQueryHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/InsertQueryHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/SelectQueryHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/UpdateQueryHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/Mapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/MyAnnotation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/TestClass.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/adapters/Adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/adapters/Adapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/Column.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/Column.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/ID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/ID.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/ManyToOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/ManyToOne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/Nullable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToOneParent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToMany.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToMany.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToOneHoldKey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/ObjectDAM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToOneHoldKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToOneChild.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/OneToOneNoneKey.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/annotations/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/GroupBy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/GroupBy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/HavingCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/Condition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/NestedBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/NestedBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/SelectCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/SelectCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/SelectQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/builders/select/SelectQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PDeleteQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PDeleteQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PInsertQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PInsertQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PSelectQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PSelectQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PUpdateQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PUpdateQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PSelectQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PSelectQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PUpsertdelQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PUpsertdelQuery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/databaseConnections/SQLConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/databaseConnections/SQLConnectionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/mappers/TableMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/mappers/TableMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/models/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/models/Class.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/models/LearningBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/models/LearningBook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/DeleteQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/DeleteQueryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/IQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/IQueryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/InsertQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/InsertQueryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/SelectQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/SelectQueryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/h2p/queries/UpdateQueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/h2p/queries/UpdateQueryHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +163,8 @@
       <workItem from="1672454821467" duration="18824000" />
       <workItem from="1672480825378" duration="799000" />
       <workItem from="1672580235048" duration="13456000" />
-      <workItem from="1672635703893" duration="5130000" />
+      <workItem from="1672635703893" duration="8578000" />
+      <workItem from="1672645198292" duration="8696000" />
     </task>
     <servers />
   </component>
@@ -172,49 +175,79 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/Application.java</url>
-          <line>92</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/Application.java</url>
-          <line>75</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/h2p/adapters/Adapter.java</url>
-          <line>51</line>
+          <line>65</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/mappers/TableMapper.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/IH2PUpsertdelQuery.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PInsertQuery.java</url>
-          <line>26</line>
+          <line>23</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PUpdateQuery.java</url>
-          <line>36</line>
+          <line>33</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PUpdateQuery.java</url>
-          <line>17</line>
+          <line>14</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PUpdateQuery.java</url>
-          <line>49</line>
+          <line>46</line>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PDeleteQuery.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PDeleteQuery.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PDeleteQuery.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PDeleteQuery.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PSelectQuery.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PDeleteQuery.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/adapters/Adapter.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/databaseAccessManagement/H2PSelectQuery.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/adapters/Adapter.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/h2p/Application.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

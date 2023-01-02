@@ -11,9 +11,6 @@
 //import java.util.List;
 //import java.util.Map;
 //
-///**
-// * Created by vodinhphuc on 30/12/2022
-// */
 //public class SelectQueryHandler<T, K> extends IQueryHandler<T, K> {
 //    public SelectQueryHandler(Class<T> tClass) {
 //        super(tClass);

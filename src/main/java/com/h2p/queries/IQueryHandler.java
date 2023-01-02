@@ -8,9 +8,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by vodinhphuc on 30/12/2022
- */
 public abstract class IQueryHandler<T> {
     final SQLConnectionManager sqlConnectionManager;
     final TableMapper<T> tableMapper;

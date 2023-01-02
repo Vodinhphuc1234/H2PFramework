@@ -7,9 +7,6 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 
-/**
- * Created by vodinhphuc on 27/12/2022
- */
 public class SQLConnectionManager {
 
     Connection conn;
@@ -39,8 +36,7 @@ public class SQLConnectionManager {
 
     private SQLConnectionManager() {}
 
-
-    public void open() throws SQLException {
+    public void open() {
         try {
             if (this.conn == null) {
                 Properties props = new Properties();
@@ -55,20 +51,18 @@ public class SQLConnectionManager {
         } catch (SQLException e) {
             // Handle errors for JDBC
             e.printStackTrace();
-            throw e;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
-    public void close() throws SQLException {
+    public void close() {
         try {
             if (this.conn != null)
                 this.conn.close();
         } catch (SQLException e) {
             // Handle errors for JDBC
             e.printStackTrace();
-            throw e;
         }
     }
 

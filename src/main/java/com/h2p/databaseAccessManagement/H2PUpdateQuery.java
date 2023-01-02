@@ -5,9 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by vodinhphuc on 01/01/2023
- */
 public class H2PUpdateQuery<T> extends IH2PUpsertdelQuery<T> {
 
     public H2PUpdateQuery(Class<T> tClass) {

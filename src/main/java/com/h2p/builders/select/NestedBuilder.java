@@ -3,9 +3,7 @@ package com.h2p.builders.select;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-/**
- * Created by vodinhphuc on 30/12/2022
- */
+
 public abstract class NestedBuilder<T, V> {
     public T done() {
         Class<?> parentClass = parent.getClass();
@@ -13,6 +11,7 @@ public abstract class NestedBuilder<T, V> {
             V build = this.build();
             String methodName = "set" + build.getClass().getSimpleName();
             Method method = parentClass.getDeclaredMethod(methodName, build.getClass());
+            method.setAccessible(true);
             method.invoke(parent, build);
         } catch (NoSuchMethodException
                  | IllegalAccessException
@@ -22,7 +21,7 @@ public abstract class NestedBuilder<T, V> {
         return parent;
     }
 
-    public abstract V build();
+    protected abstract V build();
 
     protected T parent;
 

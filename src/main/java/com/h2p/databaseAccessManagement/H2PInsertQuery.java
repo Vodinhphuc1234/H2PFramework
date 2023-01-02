@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by vodinhphuc on 01/01/2023
- */
 public class H2PInsertQuery<T> extends IH2PUpsertdelQuery<T>{
 
     public H2PInsertQuery(Class<T> tClass) {
