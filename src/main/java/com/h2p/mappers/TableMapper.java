@@ -162,8 +162,8 @@ public class TableMapper implements ITableMapper {
                 String joinTableName = field.getType().getAnnotation(Table.class).name();
                 return String.format(" LEFT JOIN %s ON %s = %s ",
                         joinTableName,
-                        String.format(" %s.%s ", tableName, foreignKey),
-                        String.format(" %s.%s ", joinTableName, referred)
+                        String.format(" %s.%s ", tableName, referred),
+                        String.format(" %s.%s ", joinTableName, foreignKey)
                 );
             }).collect(Collectors.toList());
         }
@@ -184,8 +184,8 @@ public class TableMapper implements ITableMapper {
                 String joinTableName = field.getType().getAnnotation(Table.class).name();
                 return String.format(" LEFT JOIN %s ON %s = %s ",
                         joinTableName,
-                        String.format(" %s.%s ", joinTableName, foreignKey),
-                        String.format(" %s.%s ", tableName, referTo)
+                        String.format(" %s.%s ", joinTableName, referTo),
+                        String.format(" %s.%s ", tableName, foreignKey)
                 );
             }).collect(Collectors.toList());
         }

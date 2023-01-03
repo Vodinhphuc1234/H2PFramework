@@ -3,6 +3,7 @@ package com.h2p.databaseAccessManagement;
 import com.h2p.adapters.IAdapter;
 import com.h2p.annotations.OneToMany;
 import com.h2p.annotations.OneToOneChild;
+import com.h2p.annotations.OneToOneParent;
 import com.h2p.databaseConnections.SQLConnectionManager;
 import com.h2p.mappers.TableMapper;
 
@@ -57,14 +58,14 @@ public class H2PDeleteQuery<T> extends IH2PWritingQuery<T> {
             updateStatement.executeUpdate();
         }
 
-        List<Field> oneToOneChildColumnFields = adapter.getTableMapper().getOneToOneChildColumnFields(tClass);
+        List<Field> oneToOneChildColumnFields = adapter.getTableMapper().getOneToOneParentColumnFields(tClass);
         for (Field field : oneToOneChildColumnFields) {
             field.setAccessible(true);
-            OneToOneChild oneToOneHoldKey = field.getAnnotation(OneToOneChild.class);
+            OneToOneParent oneToOneParent = field.getAnnotation(OneToOneParent.class);
             String joinTableName = adapter.getTableMapper().getTableName(field.getType());
-            String foreignKey = oneToOneHoldKey.foreignKey();
-            String referTo = oneToOneHoldKey.referTo();
-            Object referToValue = adapter.getValueByColumnName(object,referTo, tClass );
+            String foreignKey = oneToOneParent.foreignKey();
+            String referred = oneToOneParent.referred();
+            Object referToValue = adapter.getValueByColumnName(object,referred, tClass );
 
             PreparedStatement updateStatement;
             String updateQuery;

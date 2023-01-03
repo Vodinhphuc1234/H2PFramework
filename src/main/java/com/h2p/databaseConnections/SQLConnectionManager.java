@@ -8,7 +8,6 @@ import java.util.Properties;
 
 
 public class SQLConnectionManager {
-
     Connection conn;
     public static ThreadLocal<SQLConnectionManager> INSTANCE;
 

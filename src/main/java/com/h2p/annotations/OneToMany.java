@@ -1,7 +1,5 @@
 package com.h2p.annotations;
 
-import com.h2p.models.User;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

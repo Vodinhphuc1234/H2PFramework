@@ -2,7 +2,6 @@ package com.h2p.databaseAccessManagement;
 
 import com.h2p.adapters.IAdapter;
 import com.h2p.builders.select.SelectQuery;
-import com.h2p.mappers.TableMapper;
 
 import java.util.List;
 
