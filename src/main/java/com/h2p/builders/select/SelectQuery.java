@@ -58,6 +58,8 @@ public class SelectQuery {
         public void reset() {
             this.condition = null;
             this.groupBy = null;
+            builderWhere.reset();
+            builderGroupBy.reset();
         }
 
         public SelectQuery build() {

@@ -28,7 +28,6 @@ public abstract class H2PAbstractRepository<T> {
         this.updateQuery = new H2PUpdateQuery<>(tClass, this.adapter);
         this.deleteQuery = new H2PDeleteQuery<>(tClass, this.adapter);
     }
-
     public T findByIds(Object... ids) {
         List<String> idColumns = new ArrayList<>(adapter.getTableMapper().getIdMap(tClass).values());
         if (ids.length != idColumns.size()) {
@@ -45,11 +44,9 @@ public abstract class H2PAbstractRepository<T> {
         readingQuery.selectBuilder.where().done();
         return readingQuery.select(true).stream().findFirst().orElse(null);
     }
-
     public List<T> findAll() {
         return readingQuery.select(true);
     }
-
     public int save(T object) {
         List<Object> idValues = null;
         try {

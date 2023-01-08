@@ -17,15 +17,22 @@ public class H2PInsertQuery<T> extends IH2PWritingQuery<T> {
     @Override
     protected PreparedStatement getStatement(String tableName, List<String> columnNames, List<Object> columnParams, List<String> idColumnNames, List<Object> idParams)
             throws SQLException {
-        List<String> questions = new ArrayList<>(Collections.nCopies(columnParams.size(), "?"));
-        String questionStr = String.join(", ", questions);
+        List<String> cloneColumns = new ArrayList<>(columnNames);
+        List<Object> cloneParams = new ArrayList<>(columnParams);
+        if (this.adapter.getTableMapper().checkAutoId(tClass)) {
+            cloneColumns.removeAll(idColumnNames);
+            cloneParams.removeAll(idParams);
+        }
 
-        String columnNameStr = String.join(",", columnNames);
+        List<String> questions = new ArrayList<>(Collections.nCopies(cloneColumns.size(), "?"));
+        String questionStr = String.join(", ", questions);
+        String columnNameStr = String.join(",", cloneColumns);
         String SQLQuery = String.format("INSERT INTO %s (%s) VALUES(%s)", tableName, columnNameStr, questionStr);
 
+        System.out.println(SQLQuery);
         PreparedStatement preparedStatement = SQLConnectionManager.getInstance().getConn().prepareStatement(SQLQuery);
         int i = 1;
-        for (Object param : columnParams) {
+        for (Object param : cloneParams) {
             preparedStatement.setObject(i++, param);
         }
         return preparedStatement;

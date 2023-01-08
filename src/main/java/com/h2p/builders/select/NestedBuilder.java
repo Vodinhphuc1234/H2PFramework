@@ -22,6 +22,7 @@ public abstract class NestedBuilder<T, V> {
     }
 
     protected abstract V build();
+    public abstract void reset();
 
     protected T parent;
 

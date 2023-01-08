@@ -193,6 +193,17 @@ public class TableMapper implements ITableMapper {
     }
 
     @Override
+    public boolean checkAutoId(Class<?> tClass) {
+        Set<Field> fields = getIdMap(tClass).keySet();
+        for (Field field: fields){
+            field.setAccessible(true);
+            ID id = field.getAnnotation(ID.class);
+            if (id != null && id.auto()) return true;
+        }
+        return false;
+    }
+
+    @Override
     public Object createInstance(Class<?> tClass) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Constructor<?> ctor = tClass.getConstructor();
         return ctor.newInstance();

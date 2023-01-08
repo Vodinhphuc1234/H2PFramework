@@ -40,5 +40,10 @@ public class Condition<B> {
         public Condition<B> build() {
             return new Condition<B>(this);
         }
+
+        @Override
+        public void reset() {
+            conditionString = new StringBuilder();
+        }
     }
 }

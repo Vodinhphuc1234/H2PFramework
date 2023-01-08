@@ -34,6 +34,7 @@ public interface ITableMapper {
     String getOneToOneParentLeftJoinString(Class<?> tClass);
 
     String getOneToOneChildLeftJoinString(Class<?> tClass);
+    boolean checkAutoId (Class<?> tClass);
 
     Object createInstance(Class<?> tClass) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException;
 }

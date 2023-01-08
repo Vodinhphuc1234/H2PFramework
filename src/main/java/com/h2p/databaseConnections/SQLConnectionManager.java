@@ -37,7 +37,7 @@ public class SQLConnectionManager {
 
     public void open() {
         try {
-            if (this.conn == null) {
+            if (this.conn == null || this.conn.isClosed()) {
                 Properties props = new Properties();
                 ClassLoader loader = Thread.currentThread().getContextClassLoader();
                 InputStream stream = loader.getResourceAsStream("config.properties");

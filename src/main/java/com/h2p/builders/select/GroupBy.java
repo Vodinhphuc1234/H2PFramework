@@ -23,7 +23,7 @@ public class GroupBy {
         return groupByBuilder.toString();
     }
 
-    public static final class Builder extends NestedBuilder<SelectQuery.Builder, GroupBy> {
+    public static final class Builder extends NestedBuilder<SelectQuery.Builder, GroupBy>{
         String columns;
         Condition<Builder> condition;
 
@@ -47,6 +47,12 @@ public class GroupBy {
         @Override
         protected GroupBy build() {
             return new GroupBy(this);
+        }
+
+        @Override
+        public void reset() {
+            columns = null;
+            builderHaving.reset();
         }
     }
 }
