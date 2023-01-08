@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by vodinhphuc on 02/01/2023
  */
-public abstract class AbstractDao<T> {
+public abstract class H2PAbstractRepository<T> {
     final IAdapter adapter;
     final Class<T> tClass;
     final IH2PReadingQuery<T> readingQuery;
@@ -19,7 +19,7 @@ public abstract class AbstractDao<T> {
     final IH2PWritingQuery<T> updateQuery;
     final IH2PWritingQuery<T> deleteQuery;
 
-    protected AbstractDao(Class<T> tClass) {
+    protected H2PAbstractRepository(Class<T> tClass) {
         TableMapper tableMapper = new TableMapper();
         this.adapter = new SQLAdapter(tableMapper);
         this.tClass = tClass;
@@ -29,7 +29,7 @@ public abstract class AbstractDao<T> {
         this.deleteQuery = new H2PDeleteQuery<>(tClass, this.adapter);
     }
 
-    public T findByIds(Object... ids) throws Exception {
+    public T findByIds(Object... ids) {
         List<String> idColumns = new ArrayList<>(adapter.getTableMapper().getIdMap(tClass).values());
         if (ids.length != idColumns.size()) {
             Exception e =  new Exception(String.format("Size of params (%d) and size of id columns (%d) are not matched", ids.length, idColumns.size()));
@@ -50,8 +50,14 @@ public abstract class AbstractDao<T> {
         return readingQuery.select(true);
     }
 
-    public int save(T object) throws Exception {
-        List<Object> idValues = new ArrayList<>(adapter.getId(object, tClass));
+    public int save(T object) {
+        List<Object> idValues = null;
+        try {
+            idValues = new ArrayList<>(adapter.getId(object, tClass));
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return 0;
+        }
         T current = findByIds(idValues.toArray());
         if (current == null){
             return insertQuery.execute(object);
